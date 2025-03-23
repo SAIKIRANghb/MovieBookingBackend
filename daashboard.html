@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Theatre Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #logo {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .big-logo {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        #left-menu {
+            width: 250px;
+            background-color: #444;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        }
+        #left-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        #left-menu ul li {
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+        #left-menu ul li.active {
+            background-color: #555;
+        }
+        #left-menu ul li:hover {
+            background-color: #666;
+        }
+        #left-menu ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            gap: 10px;
+        }
+        #main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            margin: 20px 0;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        /* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    height: 5px; /* Height of the scrollbar (for horizontal scrollbar) */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Background of the track */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(236,107,15,0.8); /* Color of the thumb (scrollbar handle) */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(236, 107, 15, 1); /* Color of the thumb on hover */
+  }
+
+
+    </style>
+</head>
+<body>
+    <div id="logo">
+        <span class="big-logo">CinePlex</span>
+    </div>
+    <div id="left-menu">
+        <ul>
+            <li class="active"><a href="#dashboard"><i class="ion-ios-speedometer-outline"></i><span>Dashboard</span></a></li>
+            <li><a href="#movies"><i class="ion-ios-film-outline"></i><span>Movies</span></a></li>
+            <li><a href="#theatres"><i class="ion-ios-home-outline"></i><span>Theatres</span></a></li>
+            <li><a href="#screens"><i class="ion-ios-monitor-outline"></i><span>Screens</span></a></li>
+            <li><a href="#slots"><i class="ion-ios-clock-outline"></i><span>Slots</span></a></li>
+            <li><a href="#users"><i class="ion-ios-person-outline"></i><span>Users</span></a></li>
+            <li><a href="#webpage"><i class="ion-ios-world-outline"></i><span>Web Page</span></a></li>
+        </ul>
+    </div>
+    <div id="main-content">
+        <div id="page-container">
+            <!-- Add Movie -->
+            <div id="movies" class="card">
+                <div class="title">Add Movie</div>
+                <form id="movieForm">
+                    <label for="movieTitle">Title:</label>
+                    <input type="text" id="movieTitle" required>
+                    
+                    <label for="theatreName">Theatre Name:</label>
+                    <input type="text" id="theatreName" required>
+                    
+                    <label for="theatreLocation">Theatre Location:</label>
+                    <input type="text" id="theatreLocation" required>
+                    
+                    <label for="screenNo">Screen Number:</label>
+                    <input type="text" id="screenNo" required>
+                    
+                    <label for="movieImgSrc">Image Source:</label>
+                    <input type="text" id="movieImgSrc" required>
+                    
+                    <label for="movieDescription">Description:</label>
+                    <textarea id="movieDescription" required></textarea>
+                    
+                    <label for="movieGenre">Genre:</label>
+                    <input type="text" id="movieGenre" required>
+                    
+                    <label for="movieLanguage">Language:</label>
+                    <input type="text" id="movieLanguage" required>
+                    
+                    <button type="submit">Add Movie</button>
+                </form>
+            </div>
+
+            <!-- Add Theatre -->
+            <div id="theatres" class="card">
+                <div class="title">Add Theatre</div>
+                <form id="theatreForm">
+                    <label for="theatreNameNew">Theatre Name:</label>
+                    <input type="text" id="theatreNameNew" required>
+                    
+                    <label for="theatreLocationNew">Location:</label>
+                    <input type="text" id="theatreLocationNew" required>
+                    
+                    <button type="submit">Add Theatre</button>
+                </form>
+            </div>
+
+            <!-- Add Screen -->
+            <div id="screens" class="card">
+                <div class="title">Add Screen</div>
+                <form id="screenForm">
+                    <label for="screenNoNew">Screen Number:</label>
+                    <input type="text" id="screenNoNew" required>
+                    
+                    <label for="theatreScreen">Theatre Name:</label>
+                    <input type="text" id="theatreScreen" required>
+                    
+                    <label for="classNo">Class Number:</label>
+                    <input type="number" id="classNo" required>
+                    
+                    <label for="className">Class Name:</label>
+                    <input type="text" id="className" required>
+                    
+                    <label for="numRows">Number of Rows:</label>
+                    <input type="number" id="numRows" required>
+                    
+                    <label for="seatsPerRow">Seats Per Row:</label>
+                    <input type="number" id="seatsPerRow" required>
+                    
+                    <button type="submit">Add Screen</button>
+                </form>
+            </div>
+
+            <!-- Add Slot -->
+            <div id="slots" class="card">
+                <div class="title">Add Slot</div>
+                <form id="slotForm">
+                    <label for="slotMovie">Movie Title:</label>
+                    <input type="text" id="slotMovie" required>
+                    
+                    <label for="slotTheatre">Theatre Name:</label>
+                    <input type="text" id="slotTheatre" required>
+                    
+                    <label for="slotScreen">Screen Number:</label>
+                    <input type="text" id="slotScreen" required>
+                    
+                    <label for="slotTime">Time:</label>
+                    <input type="text" id="slotTime" required>
+                    
+                    <label for="slotDate">Date:</label>
+                    <input type="date" id="slotDate" required>
+                    
+                    <button type="submit">Add Slot</button>
+                </form>
+            </div>
+
+            <!-- Add User -->
+            <div id="users" class="card">
+                <div class="title">Add User</div>
+                <form id="userForm">
+                    <label for="userName">Name:</label>
+                    <input type="text" id="userName" required>
+                    
+                    <label for="userEmail">Email:</label>
+                    <input type="email" id="userEmail" required>
+                    
+                    <label for="userPassword">Password:</label>
+                    <input type="password" id="userPassword" required>
+                    
+                    <button type="submit">Add User</button>
+                </form>
+            </div>
+
+            <!-- Add Web Page -->
+            <div id="webpage" class="card">
+                <div class="title">Add Web Page</div>
+                <form id="webPageForm">
+                    <label for="webPageLogo">Logo URL:</label>
+                    <input type="text" id="webPageLogo" required>
+                    
+                    <label for="webPageTheatreName">Theatre Name:</label>
+                    <input type="text" id="webPageTheatreName" required>
+                    
+                    <label for="webPageFooter">Footer Content:</label>
+                    <textarea id="webPageFooter" required></textarea>
+                    
+                    <button type="submit">Add Web Page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#movieForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Movie and Theatre details added successfully!');
+                $(this).trigger('reset');
+            });
+
+            $('#theatreForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Theatre details added successfully!');
+                $(this).trigger('reset');
+            });
+
+            $('#screenForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Screen details added successfully!');
+                $(this).trigger('reset');
+            });
+
+            $('#slotForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Slot details added successfully!');
+                $(this).trigger('reset');
+            });
+
+            $('#userForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('User details added successfully!');
+                $(this).trigger('reset');
+            });
+
+            $('#webPageForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Web Page details added successfully!');
+                $(this).trigger('reset');
+            });
+        });
+    </script>
+</body>
+</html>
