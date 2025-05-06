@@ -9,6 +9,29 @@ exports.getBookings = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   };
+// exports.getBookings = async (req, res) => {
+//   try {
+//     // Check if data is cached
+//     redisClient.get('bookings', async (err, cachedData) => {
+//       if (err) throw err;
+
+//       if (cachedData) {
+//         // Send cached data
+//         return res.status(200).json(JSON.parse(cachedData));
+//       }
+
+//       // Fetch from database if not cached
+//       const bookings = await Booking.find();
+
+//       // Cache the data
+//       redisClient.setex('bookings', 3600, JSON.stringify(bookings)); // Cache for 1 hour
+
+//       res.status(200).json(bookings);
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
   
   exports.getBookingsFromJWT = async (req, res) => {
     try {
