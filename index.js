@@ -45,7 +45,7 @@ const swaggerDocument = {
   },
   servers: [
     {
-      url: "http://localhost:5001"
+      url: "https://moviebookingbackend-fu14.onrender.com"
     }
   ],
   paths: {
